@@ -59,11 +59,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const INTERVAL = 6000;
 
     function goToSlide(index) {
-      slides.forEach(s => s.classList.remove('active'));
+      slides.forEach(s => {
+        s.classList.remove('active');
+        const content = s.querySelector('.hero__content');
+        if (content) content.classList.remove('hero__content--enter');
+      });
       dots.forEach(d => d.classList.remove('active'));
       current = (index + slides.length) % slides.length;
       slides[current].classList.add('active');
       dots[current].classList.add('active');
+      const activeContent = slides[current].querySelector('.hero__content');
+      if (activeContent) {
+        void activeContent.offsetHeight;
+        activeContent.classList.add('hero__content--enter');
+      }
     }
     function nextSlide() { goToSlide(current + 1); }
     function prevSlide() { goToSlide(current - 1); }
