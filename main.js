@@ -173,4 +173,36 @@ document.addEventListener('DOMContentLoaded', () => {
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const region = document.getElementById(btn.getAttribute('aria-controls'));
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        const otherBtn = other.querySelector('.faq-item__question');
+        const otherRegion = otherBtn && document.getElementById(otherBtn.getAttribute('aria-controls'));
+        if (otherRegion) otherRegion.hidden = true;
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        if (region) region.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Newsletter form (no backend — show thank you)
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = newsletterForm.querySelector('input[name="email"]');
+      if (!email || !email.value.trim()) return;
+      newsletterForm.innerHTML = '<p class="newsletter-strip__thanks" style="margin:0;color:var(--slate-300);font-size:1rem;">Thanks for subscribing. We\'ll be in touch.</p>';
+    });
+  }
 });
