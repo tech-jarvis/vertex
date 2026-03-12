@@ -257,6 +257,17 @@ p { font-size: 1.05rem; color: var(--text-body); max-width: 680px; }
 .benefits-strip__list li { padding: var(--space-xs) 0; padding-left: 1.5rem; position: relative; font-size: 1rem; color: var(--text-body); }
 .benefits-strip__list li::before { content: ''; position: absolute; left: 0; top: .75em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
+/* Before/After comparison (why-us) */
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+.comparison__col { border-radius: var(--radius-md); padding: var(--space-lg); }
+.comparison__col--before { background: var(--slate-100); border: 1px solid var(--slate-200); }
+.comparison__col--after { background: var(--grad-card); border: 2px solid var(--orange); }
+.comparison__col h3 { margin-bottom: var(--space-sm); }
+.comparison__col li { padding: .5rem 0; padding-left: 1.5rem; position: relative; list-style: none; }
+.comparison__col--before li::before { content: '✗'; position: absolute; left: 0; color: var(--slate-400); font-weight: 700; }
+.comparison__col--after li::before { content: '✓'; position: absolute; left: 0; color: var(--orange-dark); font-weight: 700; }
+@media (max-width: 768px) { .comparison { grid-template-columns: 1fr; } }
+
 /* Cards */
 .card { background: var(--white); border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--slate-200); transition: all var(--dur) var(--ease); position: relative; overflow: hidden; }
 .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-btn); transform: scaleX(0); transition: transform var(--dur) var(--ease); }
