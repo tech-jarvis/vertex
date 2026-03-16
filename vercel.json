@@ -10,10 +10,5 @@
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
       ]
     }
-  ],
-  "functions": {
-    "api/sitemap.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  ]
 }
