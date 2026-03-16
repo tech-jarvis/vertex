@@ -1,0 +1,3 @@
+# Serve sitemap and robots as static files (prevents SPA fallback from serving index.html)
+/sitemap.xml  /sitemap.xml  200
+/robots.txt   /robots.txt   200

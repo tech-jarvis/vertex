@@ -1,0 +1,6 @@
+# Ensure crawlers get correct content type for sitemap and robots
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8

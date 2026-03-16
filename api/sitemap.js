@@ -89,8 +89,12 @@ const SITEMAP = `<?xml version="1.0" encoding="UTF-8"?>
   </url>
 </urlset>`;
 
-export default function handler(req, res) {
-  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=3600');
-  res.status(200).send(SITEMAP);
-}
+module.exports = function handler(req, res) {
+  try {
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.status(200).send(SITEMAP);
+  } catch (err) {
+    res.status(500).setHeader('Content-Type', 'text/plain').send('Sitemap error');
+  }
+};
