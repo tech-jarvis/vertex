@@ -2,5 +2,8 @@
   "name": "vertex-bdc",
   "version": "1.0.0",
   "description": "Vertex BDC website",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "resend": "^4.8.0"
+  }
 }

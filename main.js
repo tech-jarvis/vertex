@@ -130,7 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
         phone: form.querySelector('#phone').value.trim(),
         leadVolume: form.querySelector('#leadVolume').value,
         crm: form.querySelector('#crm').value,
-        message: form.querySelector('#message').value.trim()
+        message: form.querySelector('#message').value.trim(),
+        source: typeof window !== 'undefined' ? `${window.location.pathname}${window.location.search}` : ''
       };
 
       const submitBtn = form.querySelector('button[type="submit"]');
@@ -141,7 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        const result = await res.json();
+        let result = {};
+        try {
+          result = await res.json();
+        } catch {
+          result = { success: false, error: 'Unexpected server response.' };
+        }
         if (result.success) {
           form.innerHTML = `
             <div style="text-align:center;padding:3rem 1rem;">
@@ -195,14 +201,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Newsletter form (no backend — show thank you)
   const newsletterForm = document.getElementById('newsletterForm');
   if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+    newsletterForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = newsletterForm.querySelector('input[name="email"]');
-      if (!email || !email.value.trim()) return;
-      newsletterForm.innerHTML = '<p class="newsletter-strip__thanks" style="margin:0;color:var(--slate-300);font-size:1rem;">Thanks for subscribing. We\'ll be in touch.</p>';
+      const emailInput = newsletterForm.querySelector('input[name="email"]');
+      if (!emailInput || !emailInput.value.trim()) return;
+      const btn = newsletterForm.querySelector('button[type="submit"]');
+      const originalBtnText = btn ? btn.textContent : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailInput.value.trim(),
+            source: typeof window !== 'undefined' ? `${window.location.pathname}${window.location.search}` : ''
+          })
+        });
+        let result = {};
+        try {
+          result = await res.json();
+        } catch {
+          result = { success: false, error: 'Unexpected server response.' };
+        }
+        if (result.success) {
+          newsletterForm.innerHTML =
+            '<p class="newsletter-strip__thanks" style="margin:0;color:var(--slate-300);font-size:1rem;">Thanks for subscribing. We\'ll be in touch.</p>';
+        } else {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = originalBtnText;
+          }
+          alert(result.error || 'Something went wrong. Please try again.');
+        }
+      } catch {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = originalBtnText;
+        }
+        alert('Network error. Please check your connection and try again.');
+      }
     });
   }
 });
