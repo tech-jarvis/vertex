@@ -411,11 +411,17 @@ p { font-size: 1.05rem; color: var(--text-body); max-width: 680px; }
 
 /* Contact info sidebar */
 .contact-info { background: var(--slate-900); border-radius: var(--radius-md); padding: var(--space-lg); color: var(--white); }
+.contact-info h3 { color: var(--white); }
 .contact-info__item { display: flex; gap: var(--space-sm); margin-bottom: var(--space-md); }
 .contact-info__icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(247, 147, 30, .2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .contact-info__icon svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; }
-.contact-info__label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--slate-400); margin-bottom: .2rem; }
-.contact-info__value { font-size: .95rem; margin: 0; }
+.contact-info__label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--slate-300); margin-bottom: .2rem; font-weight: 600; }
+/* Override global `p { color: var(--text-body) }` so values stay readable on dark card */
+.contact-info__value { font-size: .95rem; margin: 0; color: var(--white); line-height: 1.55; max-width: none; }
+.contact-info__link { color: var(--white); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255, 255, 255, .45); }
+.contact-info__link:hover { color: var(--orange-light); text-decoration-color: var(--orange-light); }
+.contact-map-link { display: block; text-decoration: none; color: var(--slate-200); font-size: .9rem; padding: var(--space-md); border: 1px solid rgba(255, 255, 255, .22); border-radius: var(--radius-sm); text-align: center; transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease); }
+.contact-map-link:hover { border-color: rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); color: var(--white); }
 .map-placeholder { background: var(--slate-100); border-radius: var(--radius-sm); padding: var(--space-md); text-align: center; color: var(--slate-500); font-size: .9rem; }
 
 /* CRM / tech stack */
