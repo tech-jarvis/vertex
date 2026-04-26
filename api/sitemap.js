@@ -87,6 +87,48 @@ const SITEMAP = `<?xml version="1.0" encoding="UTF-8"?>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-speed-to-lead</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-inhouse-vs-outsourced-bdc</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-data-mining-aged-leads</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-service-lane-bdc</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-crm-mistakes</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://vertexbdcllc.com/blog-24-7-bdc-coverage</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
 </urlset>`;
 
 module.exports = function handler(req, res) {
